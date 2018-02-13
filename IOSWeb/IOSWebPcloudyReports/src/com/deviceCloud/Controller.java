@@ -40,10 +40,10 @@ public File ReportsFolder = new File("Reports");
 	}
 
 	public void runExecutionOnPCloudy() throws IOException, ConnectError, InterruptedException {
-		Connector con = new Connector("https://device.pcloudy.com/api/");
+		Connector con = new Connector("https://devicecloud.bosch.com/api/");
 
 		// User Authentication over pCloudy
-		String authToken = con.authenticateUser("shibu.prasad@sstsinc.com", "5vgzqqp4zrd2hdrgymbqz8yq");
+		String authToken = con.authenticateUser(Your Mail ID, Your API Key);
 
 		ArrayList<MobileDevice> selectedDevices = new ArrayList<>();
 		

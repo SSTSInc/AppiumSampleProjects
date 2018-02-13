@@ -39,10 +39,10 @@ public File ReportsFolder = new File("Reports");
 	}
 
 	public void runExecutionOnPCloudy() throws IOException, ConnectError, InterruptedException {
-		Connector con = new Connector("https://device.pcloudy.com/api/");
+		Connector con = new Connector("https://devicecloud.bosch.com/api/");
 
 		// User Authentication over pCloudy
-		String authToken = con.authenticateUser("Your Mail Id", "Your ApiKey");
+		String authToken = con.authenticateUser(Your Mail Id, Your ApiKey);
 
 		ArrayList<MobileDevice> selectedDevices = new ArrayList<>();
 		
@@ -56,7 +56,7 @@ public File ReportsFolder = new File("Reports");
 		System.out.println("Devices booked successfully");
 
 		// Select apk in pCloudy Cloud Drive
-		File fileToBeUploaded = new File("./com.ba.mobile.apk");
+		File fileToBeUploaded = new File("./pCloudy Appium Demo.apk");
 		PDriveFileDTO alreadyUploadedApp = con.getAvailableAppIfUploaded(authToken, fileToBeUploaded.getName());
 		if (alreadyUploadedApp == null) {
 			System.out.println("Uploading App: " + fileToBeUploaded.getAbsolutePath());
@@ -134,7 +134,7 @@ public File ReportsFolder = new File("Reports");
 					capabilities.setCapability("deviceName", aDevice.capabilities.deviceName);
 					capabilities.setCapability("browserName", aDevice.capabilities.deviceName);
 					capabilities.setCapability("platformName", "Android");
-					capabilities.setCapability("appPackage", "com.ba.mobile");
+					capabilities.setCapability("appPackage", "com.pcloudy.appiumdemo");
 					capabilities.setCapability("appActivity", "com.ba.mobile.LaunchActivity");
 					capabilities.setCapability("rotatable", true);
 					AppiumDriver driver = new AndroidDriver(endpoint, capabilities);
@@ -143,7 +143,7 @@ public File ReportsFolder = new File("Reports");
 					report.addStep("Launch App", capabilities.toString(), endpoint.toString(), ExecutionResult.Pass);
 
 					report.addComment("--- Add your Test Scripts over here ---");
-					driver.findElement(By.xpath("//android.widget.Button[@resource-id='android:id/button1' and @text='Accept']")).click();
+					driver.findElement(By.xpath("//android.widget.Button[@resource-id='com.pcloudy.appiumdemo:id/accept' and @text='Accept']")).click();
 					// ###########################################
 					// ###########################################
 					// ###########################################
